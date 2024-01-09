@@ -1,4 +1,18 @@
-class Settings extends StatelessWidget {
+import 'package:flutter/material.dart';
+// import 'package:swipeflix/core/app_export.dart';
+// import 'package:swipeflix/widgets/app_bar/appbar_title_image.dart';
+// import 'package:swipeflix/widgets/app_bar/custom_app_bar.dart';
+// import 'package:swipeflix/widgets/custom_icon_button.dart';
+import 'package:swipeflix/presentation/about_this_app_screen/about_this_app_screen.dart';
+import 'package:swipeflix/presentation/dark_light_mode_screen/dark_light_mode_screen.dart';
+
+
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({Key? key})
+      : super(
+          key: key,
+        );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +22,7 @@ class Settings extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image(
-              image: AssetImage('assets/Logo.png'),
+              image: AssetImage('assets/images/Logo.png'),
             ),
           ],
         ),
@@ -22,15 +36,15 @@ class Settings extends StatelessWidget {
             onSelected: (value) {
               if (value == 'Settings & Privacy') {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => DLMode()));
+                    context, MaterialPageRoute(builder: (context) => DarkLightModeScreen()));
               } else if (value == 'About') {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => About()));
+                    context, MaterialPageRoute(builder: (context) => AboutThisAppScreen()));
               }
             },
             offset: Offset(-25, 80),
             color: Colors.black,
-            icon: Image.asset('assets/Icon button-darkSettings.png'),
+            icon: Image.asset('assets/images/Icon button-darkSettings.png'),
             iconSize: 100,
             itemBuilder: (context) => [
               const PopupMenuItem(
