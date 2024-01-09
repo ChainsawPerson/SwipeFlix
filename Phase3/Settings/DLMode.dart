@@ -1,4 +1,17 @@
-class DLMode extends StatelessWidget {
+import 'package:flutter/material.dart';
+// import 'package:swipeflix/core/app_export.dart';
+// import 'package:swipeflix/widgets/custom_switch.dart';
+
+
+
+class DarkLightModeScreen extends StatelessWidget {
+  DarkLightModeScreen({Key? key})
+      : super(
+          key: key,
+        );
+
+  bool isSelectedSwitch = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +21,7 @@ class DLMode extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image(
-                image: AssetImage('assets/Logo.png'),
+                image: AssetImage('assets/images/Logo.png'),
               ),
             ],
           ),
