@@ -1,25 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:swipeflix/core/app_export.dart';
+import 'package:swipeflix/presentation/settings_screen/settings_screen.dart';
+import 'package:swipeflix/widgets/app_bar/appbar_iconbutton.dart';
+import 'package:swipeflix/widgets/app_bar/appbar_title_image.dart';
+import 'package:swipeflix/widgets/app_bar/custom_app_bar.dart';
+import 'package:swipeflix/widgets/custom_elevated_button.dart';
+import 'package:swipeflix/widgets/watchlist_button.dart';
+
 var name = 'Spiderman';
 var link =
     'https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg';
-bool isSaved = false;
 
 class Homepage extends StatelessWidget {
+  const Homepage({Key? key})
+      : super(
+          key: key,
+        );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Image(
-          image: AssetImage('assets/Logo_update.png'),
+          image: AssetImage('assets/images/Logo_update.png'),
         ),
         actions: [
-          OutlinedButton(
+          IconButton(
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Settings()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingsScreen()));
             },
-            child: Image(
-              image: AssetImage('assets/Icon button-darkSettings.png'),
+            icon: Image(
+              image: AssetImage('assets/images/Icon button-darkSettings.png'),
             ),
           ),
         ],
@@ -42,16 +55,15 @@ class Homepage extends StatelessWidget {
             children: [
               Container(
                 // Movie Title
-                color: const Color(0xFFEFDBCB),
+                color: Theme.of(context).colorScheme.primaryContainer,
                 width: MediaQuery.of(context).size.width,
                 alignment: Alignment.center,
                 child: Text(
                   '${name}',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    color: Color(0xFF0D2C66),
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                 ),
               ),
               Column(
@@ -72,17 +84,10 @@ class Homepage extends StatelessWidget {
                             }
                           },
                           child: const Image(
-                              image:
-                                  AssetImage('assets/DislikeAnimation.png'))),
+                              image: AssetImage(
+                                  'assets/images/DislikeAnimation.png'))),
                       // Save
-                      IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            isSaved
-                                ? Icons.bookmark
-                                : Icons.bookmark_add_outlined,
-                          ),
-                          iconSize: 50),
+                      WatchListButton(),
                       // Like
                       GestureDetector(
                           onHorizontalDragUpdate: (details) {
@@ -92,7 +97,8 @@ class Homepage extends StatelessWidget {
                             }
                           },
                           child: const Image(
-                              image: AssetImage('assets/LikeAnimation.png'))),
+                              image: AssetImage(
+                                  'assets/images/LikeAnimation.png'))),
                     ],
                   ),
                   // Navigation Buttons
@@ -103,20 +109,20 @@ class Homepage extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.home_outlined),
-                        color: const Color(0xFFEFDBCB),
+                        icon: Icon(Icons.home_outlined),
+                        color: Theme.of(context).colorScheme.secondary,
                         iconSize: 35,
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.list_outlined),
-                        color: const Color(0xFFEFDBCB),
+                        icon: Icon(Icons.list_outlined),
+                        color: Theme.of(context).colorScheme.secondary,
                         iconSize: 35,
                       ),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.search),
-                        color: const Color(0xFFEFDBCB),
+                        color: Theme.of(context).colorScheme.secondary,
                         iconSize: 35,
                       ),
                     ],
