@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swipeflix/theme/theme_helper.dart';
 
-class UiProvider extends ChangeNotifier{
-
+class UiProvider extends ChangeNotifier {
   bool _isDark = false;
   bool get isDark => _isDark;
 
@@ -21,38 +21,11 @@ class UiProvider extends ChangeNotifier{
   //     brightness: Brightness.light,
   //     primaryColorDark: Colors.white
   // );
-    // Custom dark theme
-  final darkTheme = ThemeData(
-    primaryColor: Colors.black12,
-    brightness: Brightness.dark,
-    primaryColorDark: Colors.black12,
-    textTheme: TextTheme(
-      // Customize text colors for dark mode
-      bodyLarge: TextStyle(color: Colors.black),
-      bodyMedium: TextStyle(color: Colors.black),
-      // Add more text styles if needed
-    ),
-  );
-
-  // Custom light theme
-  final lightTheme = ThemeData(
-    primaryColor: Colors.white,
-    brightness: Brightness.light,
-    primaryColorDark: Colors.white,
-    textTheme: TextTheme(
-      // Customize text colors for light mode
-      bodyLarge: TextStyle(color: Colors.black),
-      bodyMedium: TextStyle(color: Colors.black),
-      // Add more text styles if needed
-    ),
-  );
-
 
   //Now we want to save the last changed theme value
 
-
   //Dark mode toggle action
-  changeTheme(){
+  changeTheme() {
     _isDark = !isDark;
 
     //Save the value to secure storage
@@ -61,11 +34,10 @@ class UiProvider extends ChangeNotifier{
   }
 
   //Init method of provider
-  init()async{
+  init() async {
     //After we re run the app
     storage = await SharedPreferences.getInstance();
-    _isDark = storage.getBool("isDark")??false;
+    _isDark = storage.getBool("isDark") ?? false;
     notifyListeners();
   }
 }
-
