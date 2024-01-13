@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swipeflix/core/app_export.dart';
 import 'package:swipeflix/presentation/homepage_screen/homepage_screen.dart';
+import 'package:swipeflix/presentation/searchpage_screen/searchpage_screen.dart';
+
 
 
 class ListsScreen extends StatelessWidget {
@@ -20,7 +22,7 @@ class ListsScreen extends StatelessWidget {
             // left Swipe
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomepageScreen()),
+              MaterialPageRoute(builder: (context) => Homepage()),
             );
           } else if (details.primaryDelta! < -sensitivity) {
             // right Swipe
@@ -125,6 +127,45 @@ class ListsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // Navigation Buttons
+                        Row(
+                          // Row of Navigation Buttons
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Home
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.home_outlined),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                            // List
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Homepage()),
+                                );
+                              },
+                              icon: Icon(Icons.list_outlined),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                            // Search
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => SearchpageScreen()),
+                                );
+                              },
+                              icon: const Icon(Icons.search),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                          ],
+                        ),
                     ],
                   ),
                 ),
