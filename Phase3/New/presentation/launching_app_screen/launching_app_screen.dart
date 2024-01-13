@@ -18,7 +18,7 @@ class LaunchingAppScreen extends StatelessWidget {
                 // Right Swipe
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomepageScreen()),
+                  MaterialPageRoute(builder: (context) => Homepage()),
                 );
               } else if (details.primaryDelta! > sensitivity) {
                 // Left Swipe
@@ -44,8 +44,8 @@ class LaunchingAppScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        CustomImageView(
-                          imagePath: ImageConstant.imgTelevision,
+                        Image(
+                          image: AssetImage('assets/images/Logo_update_full.png'),
                           height: 58.adaptSize,
                           width: 58.adaptSize,
                         ),
@@ -54,10 +54,11 @@ class LaunchingAppScreen extends StatelessWidget {
                             left: 8.h,
                             top: 10.v,
                             bottom: 8.v,
+                            //right: 0.v,
                           ),
                           child: Text(
                             "SwipeFlix",
-                            style: theme.textTheme.headlineLarge,
+                            style: theme.textTheme.headlineSmall,
                           ),
                         ),
                       ],
