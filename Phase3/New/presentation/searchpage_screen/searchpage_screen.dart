@@ -136,8 +136,8 @@ class _SearchpageScreenState extends State<SearchpageScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(height: 7.v),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgTelevision,
+                        Image(
+                          image: AssetImage('assets/images/Logo_update_full.png'),
                           height: 58.adaptSize,
                           width: 58.adaptSize,
                         ),
