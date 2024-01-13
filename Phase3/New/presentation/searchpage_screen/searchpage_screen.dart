@@ -95,6 +95,9 @@
 import 'package:flutter/material.dart';
 import 'package:swipeflix/core/app_export.dart';
 import 'package:swipeflix/widgets/custom_search_view.dart';
+import 'package:swipeflix/presentation/lists_screen/lists_screen.dart';
+import 'package:swipeflix/presentation/homepage_screen/homepage_screen.dart';
+
 
 class SearchpageScreen extends StatefulWidget {
   SearchpageScreen({Key? key}) : super(key: key);
@@ -139,34 +142,44 @@ class _SearchpageScreenState extends State<SearchpageScreen> {
                           width: 58.adaptSize,
                         ),
                         Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(left: 8.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomImageView(
-                                imagePath: ImageConstant.imgHomeIndigo900,
-                                height: 23.v,
-                                width: 21.h,
-                                margin: EdgeInsets.only(bottom: 7.v),
-                              ),
-                              CustomImageView(
-                                imagePath: ImageConstant.imgMegaphoneIndigo900,
-                                height: 19.v,
-                                width: 24.h,
-                                margin: EdgeInsets.only(
-                                  top: 5.v,
-                                  bottom: 6.v,
-                                ),
-                              ),
-                              CustomImageView(
-                                imagePath: ImageConstant.imgSearchiconIndigo900,
-                                height: 30.v,
-                                width: 38.h,
-                              ),
-                            ],
-                          ),
+                        // Navigation Buttons
+                        Row(
+                          // Row of Navigation Buttons
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Home
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Homepage()),
+                                );
+                              },
+                              icon: Icon(Icons.home_outlined),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                            // List
+                            IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ListsScreen()),
+                                );
+                              },
+                              icon: Icon(Icons.list_outlined),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                            // Search
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.search),
+                              color: Theme.of(context).colorScheme.secondary,
+                              iconSize: 35,
+                            ),
+                          ],
                         ),
                       ],
                     ),
