@@ -190,8 +190,8 @@ class ListsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 1.v),
-          CustomImageView(
-            imagePath: ImageConstant.imgTelevision,
+          Image(
+            image: AssetImage('assets/images/Logo_update_full.png'),
             height: 58.adaptSize,
             width: 58.adaptSize,
           ),
