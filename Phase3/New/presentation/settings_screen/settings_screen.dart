@@ -22,7 +22,9 @@ class SettingsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image(
-              image: AssetImage('assets/images/Logo.png'),
+              image: AssetImage('assets/images/Logo_update_full.png'),
+              height: 58,
+              width: 58,
             ),
           ],
         ),
