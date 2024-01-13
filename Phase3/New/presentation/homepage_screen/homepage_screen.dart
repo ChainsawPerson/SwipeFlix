@@ -12,6 +12,7 @@ import 'package:swipeflix/widgets/custom_elevated_button.dart';
 import 'package:swipeflix/widgets/watchlist_button.dart';
 import 'package:swipeflix/presentation/lists_screen/lists_screen.dart';
 import 'package:swipeflix/presentation/searchpage_screen/searchpage_screen.dart';
+import 'package:swipeflix/presentation/details_screen/details_screen.dart';
 //import 'package:swipeflix/database/database_manager.dart';
 
 var name = 'Spiderman';
@@ -30,7 +31,9 @@ class Homepage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: Image(
-            image: AssetImage('assets/images/Logo_update.png'),
+            image: AssetImage('assets/images/Logo_update_full.png'),
+            height: 58.adaptSize,
+            width: 58.adaptSize,
           ),
           actions: [
             IconButton(
@@ -55,7 +58,16 @@ class Homepage extends StatelessWidget {
               child: Image(
                 image: NetworkImage(link),
               ),
-
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navigate to a different page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailsScreen()),
+                  );
+                },
+                child: Text(' '),
+              ),
             ),
             Column(
               // Column Of Title -> (Like/Dislike & Navigation Buttons)
