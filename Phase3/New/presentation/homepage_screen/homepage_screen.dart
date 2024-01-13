@@ -16,7 +16,7 @@ import 'package:swipeflix/presentation/searchpage_screen/searchpage_screen.dart'
 
 var name = 'Spiderman';
 var link =
-    'https://store.playstation.com/store/api/chihiro/00_09_000/titlecontainer/SE/en/999/CUSA01163_00/image?w=800&h=800';
+    'https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg';
 
 class Homepage extends StatelessWidget {
   Homepage({Key? key})
