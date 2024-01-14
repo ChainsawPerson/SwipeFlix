@@ -2,36 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:swipeflix/core/app_export.dart';
 
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key})
-      : super(
-          key: key,
-        );
+  const DetailsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            children: [
-              _buildEight(context),
-              _buildEleven(context),
-              Container(
+        body: Column(
+          children: [
+            _buildEight(context),
+            _buildEleven(context),
+            Expanded(
+              child: Container(
                 padding: EdgeInsets.symmetric(vertical: 7.v),
                 decoration: AppDecoration.fillErrorContainer,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 8.h,
-                          right: 69.h,
-                        ),
+                        padding: EdgeInsets.only(left: 8.h, right: 69.h),
                         child: Row(
                           children: [
+                            // Genre containers...
                             Container(
                               width: 68.h,
                               padding: EdgeInsets.symmetric(
@@ -44,37 +39,54 @@ class DetailsScreen extends StatelessWidget {
                               child: Text(
                                 "Sci-Fi",
                                 style: theme.textTheme.titleSmall,
+                                maxLines: 1, // Set maxLines to 1
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            Container(
-                              width: 117.h,
-                              margin: EdgeInsets.only(left: 12.h),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16.h,
-                                vertical: 5.v,
-                              ),
-                              decoration: AppDecoration.outlineIndigo.copyWith(
-                                borderRadius: BorderRadiusStyle.roundedBorder8,
-                              ),
-                              child: Text(
-                                "Documenatry",
-                                style: theme.textTheme.titleSmall,
-                              ),
+                               Container(
+                                margin: EdgeInsets.only(left: 12.h),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 14.h,
+                                  vertical: 5.v,
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: 0,
+                                  maxWidth: 120.h, // Set your maximum width as needed
+                                ),
+                                child: Text(
+                                  "Documentary",
+                                  style: theme.textTheme.displayLarge?.copyWith(
+                                    fontSize: 17.0,
+                                  ) ?? TextStyle(fontSize: 17.0),
+                                  maxLines: 1, // Set maxLines to 1
+                                    overflow: TextOverflow.ellipsis,
+                                ),
+                                decoration: AppDecoration.outlineIndigo.copyWith(
+                                  borderRadius: BorderRadiusStyle.roundedBorder8,
+                                ),
+                              
                             ),
                             Container(
-                              width: 74.h,
-                              margin: EdgeInsets.only(left: 12.h),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16.h,
-                                vertical: 7.v,
-                              ),
-                              decoration: AppDecoration.outlineIndigo.copyWith(
-                                borderRadius: BorderRadiusStyle.roundedBorder8,
-                              ),
-                              child: Text(
-                                "Horror",
-                                style: theme.textTheme.titleSmall,
-                              ),
+                                margin: EdgeInsets.only(left: 12.h),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 14.h,
+                                  vertical: 5.v,
+                                ),
+                                constraints: BoxConstraints(
+                                  minWidth: 0,
+                                  maxWidth: 70.h, // Set your maximum width as needed
+                                ),
+                                child: Text(
+                                  "Horror",
+                                  style: theme.textTheme.displayLarge?.copyWith(
+                                    fontSize: 17.0,
+                                  ) ?? TextStyle(fontSize: 17.0),
+                                  maxLines: 1, // Set maxLines to 1
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                decoration: AppDecoration.outlineIndigo.copyWith(
+                                  borderRadius: BorderRadiusStyle.roundedBorder8,
+                                ),
                             ),
                           ],
                         ),
@@ -83,32 +95,33 @@ class DetailsScreen extends StatelessWidget {
                     SizedBox(height: 9.v),
                     _buildSix(context),
                     SizedBox(height: 10.v),
-                    Container(
-                      height: 58.adaptSize,
-                      width: 58.adaptSize,
-                      decoration: AppDecoration.fillErrorContainer.copyWith(
-                        borderRadius: BorderRadiusStyle.roundedBorder28,
-                      ),
-                      child: CustomImageView(
-                        imagePath: ImageConstant.imgHome58x58,
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
                         height: 58.adaptSize,
                         width: 58.adaptSize,
-                        radius: BorderRadius.circular(
-                          29.h,
+                        decoration: AppDecoration.fillErrorContainer.copyWith(
+                          borderRadius: BorderRadiusStyle.roundedBorder28,
                         ),
-                        alignment: Alignment.center,
+                        child: CustomImageView(
+                          imagePath: ImageConstant.imgHome58x58,
+                          height: 100.adaptSize,
+                          width: 100.adaptSize,
+                          radius: BorderRadius.circular(29.h),
+                          alignment: Alignment.center,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 3.v),
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
+
 
   /// Section Widget
   Widget _buildEight(BuildContext context) {
@@ -120,17 +133,20 @@ class DetailsScreen extends StatelessWidget {
           SizedBox(height: 78.v),
           Container(
             padding: EdgeInsets.symmetric(
-              horizontal: 97.h,
+              horizontal: 16.h,
               vertical: 3.v,
             ),
             decoration: AppDecoration.fillBlueGray,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 1.v),
+                SizedBox(height: 1.v,
+                width: 300.v,),
                 Text(
                   "Title of the Movie",
                   style: theme.textTheme.titleLarge,
+                  maxLines: 1, // Set maxLines to 1
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -166,17 +182,22 @@ class DetailsScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
+
   Widget _buildSix(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: 123.h,
-        vertical: 1.v,
-      ),
-      decoration: AppDecoration.fillOnPrimaryContainer,
-      child: Text(
-        "Description:",
-        style: theme.textTheme.titleLarge,
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 20.h,
+          vertical: 1.v,
+        ),
+        decoration: AppDecoration.fillOnPrimaryContainer,
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            "Description:\n hfjkdsksyfydjkslodjilaksxksaklsxkxkxkxkxkkxkxkxkxkkxxkxkxkxlz\n fhcdskjxsklz\n edhksjak",
+            style: theme.textTheme.titleLarge,
+          ),
+        ),
       ),
     );
   }
