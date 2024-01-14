@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:swipeflix/core/app_export.dart';
 import 'package:swipeflix/database/database_manager.dart';
 import 'package:swipeflix/database/database_models.dart';
@@ -16,11 +17,28 @@ var name = 'Spiderman';
 var link =
     'https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg';
 
+class MoviePage extends StatefulWidget {
+  @override
+  _MoviePageState createState() => _MoviePageState();
+}
+
+class _MoviePageState extends State<MoviePage> {
+  DatabaseHelper db = DatabaseHelper();
+  var index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Homepage();
+  }
+}
+
 class Homepage extends StatelessWidget {
   Homepage({Key? key})
       : super(
           key: key,
         );
+  DatabaseHelper db = DatabaseHelper();
+  var index;
 
   @override
   Widget build(BuildContext context) {
@@ -63,12 +81,26 @@ class Homepage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primaryContainer,
                 width: MediaQuery.of(context).size.width,
                 alignment: Alignment.center,
-                child: Text(
-                  '$name',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
+                child: FutureBuilder(
+                  future: db.getAllMovies(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting)
+                      return const CircularProgressIndicator();
+                    if (snapshot.hasError)
+                      return Text(snapshot.error.toString());
+                    db.insertMovies();
+                    return Text(
+                      snapshot.data!
+                          .elementAt(2)['title_primaryTitle']
+                          .toString(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer,
+                          ),
+                    );
+                  },
                 ),
               ),
               Column(
@@ -92,7 +124,10 @@ class Homepage extends StatelessWidget {
                               image: AssetImage(
                                   'assets/images/DislikeAnimation.png'))),
                       // Save
-                      WatchListButton(),
+                      WatchListButton(
+                        db: db,
+                        index: 0,
+                      ),
                       // Like
                       GestureDetector(
                           onHorizontalDragUpdate: (details) {
@@ -121,14 +156,20 @@ class Homepage extends StatelessWidget {
                       ),
                       // List
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          db
+                              .getList('watchLaterList')
+                              .then((value) => print(value.first.toString()));
+                        },
                         icon: Icon(Icons.list_outlined),
                         color: Theme.of(context).colorScheme.secondary,
                         iconSize: 35,
                       ),
                       // Search
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          db.insertMovies();
+                        },
                         icon: const Icon(Icons.search),
                         color: Theme.of(context).colorScheme.secondary,
                         iconSize: 35,
