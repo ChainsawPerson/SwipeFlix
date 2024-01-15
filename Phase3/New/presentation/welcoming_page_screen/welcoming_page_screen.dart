@@ -20,8 +20,8 @@ class WelcomingPageScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 68.v),
-              Image(
-                image: AssetImage('assets/images/Logo_update_full.png'),
+              CustomImageView(
+                imagePath: ImageConstant.imgTelevision,
                 height: 58.adaptSize,
                 width: 58.adaptSize,
               ),

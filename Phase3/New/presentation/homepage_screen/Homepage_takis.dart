@@ -17,21 +17,6 @@ var name = 'Spiderman';
 var link =
     'https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg';
 
-class MoviePage extends StatefulWidget {
-  @override
-  _MoviePageState createState() => _MoviePageState();
-}
-
-class _MoviePageState extends State<MoviePage> {
-  DatabaseHelper db = DatabaseHelper();
-  var index;
-
-  @override
-  Widget build(BuildContext context) {
-    return Homepage();
-  }
-}
-
 class Homepage extends StatelessWidget {
   Homepage({Key? key})
       : super(
@@ -39,9 +24,11 @@ class Homepage extends StatelessWidget {
         );
   DatabaseHelper db = DatabaseHelper();
   var index;
+  final number = new ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
+    index = 0;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -81,26 +68,34 @@ class Homepage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primaryContainer,
                 width: MediaQuery.of(context).size.width,
                 alignment: Alignment.center,
-                child: FutureBuilder(
-                  future: db.getAllMovies(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting)
-                      return const CircularProgressIndicator();
-                    if (snapshot.hasError)
-                      return Text(snapshot.error.toString());
-                    db.insertMovies();
-                    return Text(
-                      snapshot.data!
-                          .elementAt(2)['title_primaryTitle']
-                          .toString(),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                          ),
+                child: ValueListenableBuilder<int>(
+                  builder: (context, value, child) {
+                    return FutureBuilder(
+                      future: db.getAllMovies(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.waiting)
+                          return const CircularProgressIndicator();
+                        if (snapshot.hasError)
+                          return Text(snapshot.error.toString());
+                        index = number.value;
+                        if (index >= snapshot.data!.length)
+                          index = snapshot.data!.length - 1;
+                        return Text(
+                          snapshot.data!
+                              .elementAt(index)['title_primaryTitle']
+                              .toString(),
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryContainer,
+                                  ),
+                        );
+                      },
                     );
                   },
+                  valueListenable: number,
                 ),
               ),
               Column(
@@ -115,9 +110,12 @@ class Homepage extends StatelessWidget {
                       // Dislike
                       GestureDetector(
                           onHorizontalDragUpdate: (details) {
-                            int sensitivity = 2;
+                            int sensitivity = 0;
                             if (details.primaryDelta! < -sensitivity) {
                               // Swipe Left
+                              db.addMovieToList('likedList', index);
+                              number.value++;
+                              print('it works');
                             }
                           },
                           child: const Image(
@@ -127,6 +125,7 @@ class Homepage extends StatelessWidget {
                       WatchListButton(
                         db: db,
                         index: 0,
+                        number: number,
                       ),
                       // Like
                       GestureDetector(
@@ -134,6 +133,9 @@ class Homepage extends StatelessWidget {
                             int sensitivity = 2;
                             if (details.primaryDelta! > sensitivity) {
                               // Swipe Right
+                              db.addMovieToList('dislikedList', index);
+                              number.value++;
+                              print('it works');
                             }
                           },
                           child: const Image(

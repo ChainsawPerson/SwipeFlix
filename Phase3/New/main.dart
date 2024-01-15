@@ -12,7 +12,8 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-
+  DatabaseHelper().deleteDatabase();
+  DatabaseHelper().insertMovies();
   runApp(
     ChangeNotifierProvider(
       create: (context) => UiProvider()..init(),

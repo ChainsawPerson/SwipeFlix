@@ -11,19 +11,19 @@ class LaunchingAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-          onHorizontalDragUpdate: (details) {
-            // Note: Sensitivity is an integer used when you don't want to mess up vertical drag
-            int sensitivity = 0;
-              if (details.primaryDelta! < -sensitivity) {
-                // Right Swipe
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Homepage()),
-                );
-              } else if (details.primaryDelta! > sensitivity) {
-                // Left Swipe
-              }
-          },
+        onHorizontalDragUpdate: (details) {
+          // Note: Sensitivity is an integer used when you don't want to mess up vertical drag
+          int sensitivity = 0;
+          if (details.primaryDelta! < -sensitivity) {
+            // Right Swipe
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Homepage()),
+            );
+          } else if (details.primaryDelta! > sensitivity) {
+            // Left Swipe
+          }
+        },
         child: SafeArea(
           child: Scaffold(
             backgroundColor: appTheme.blue100,
@@ -44,8 +44,8 @@ class LaunchingAppScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Image(
-                          image: AssetImage('assets/images/Logo_update_full.png'),
+                        CustomImageView(
+                          imagePath: ImageConstant.imgTelevision,
                           height: 58.adaptSize,
                           width: 58.adaptSize,
                         ),
@@ -54,11 +54,10 @@ class LaunchingAppScreen extends StatelessWidget {
                             left: 8.h,
                             top: 10.v,
                             bottom: 8.v,
-                            //right: 0.v,
                           ),
                           child: Text(
                             "SwipeFlix",
-                            style: theme.textTheme.headlineSmall,
+                            style: theme.textTheme.headlineLarge,
                           ),
                         ),
                       ],
@@ -96,10 +95,10 @@ class LaunchingAppScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 31.v),
                       Text(
-                      "Do your First swipe here",
-                          style: TextStyle(
-                            fontSize: 25,
-                          ),
+                        "Do your First swipe here",
+                        style: TextStyle(
+                          fontSize: 25,
+                        ),
                       ),
                     ],
                   ),
@@ -108,7 +107,6 @@ class LaunchingAppScreen extends StatelessWidget {
               ),
             ),
           ),
-      )
-    );
+        ));
   }
 }
