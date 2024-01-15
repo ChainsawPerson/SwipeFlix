@@ -53,19 +53,21 @@ class _WatchListButtonState extends State<WatchListButton> {
                           }
                         }
                       }
-                      if (!_isSaved) {
-                        print('Saved to watchList');
-                        widget.db.addMovieToList(
-                            'watchLaterList', widget.number.value);
-                      } else {
-                        print('Removed from watchList');
+                      if (widget.number.value < 9) {
+                        if (!_isSaved) {
+                          print('Saved to watchList');
+                          widget.db.addMovieToList(
+                              'watchLaterList', widget.number.value);
+                        } else {
+                          print('Removed from watchList');
+                          widget.db.deleteMovie(
+                              'watchLaterList', widget.number.value);
+                        }
                         widget.db
-                            .deleteMovie('watchLaterList', widget.number.value);
+                            .getList('watchLaterList')
+                            .then((value) => print(value));
+                        widget.number.value++;
                       }
-                      widget.db
-                          .getList('watchLaterList')
-                          .then((value) => print(value));
-                      widget.number.value++;
                     });
                   },
                   icon: (_isSaved

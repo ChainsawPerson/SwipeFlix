@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:swipe_to/swipe_to.dart';
 import 'package:flutter/material.dart';
 import 'package:swipeflix/core/app_export.dart';
 import 'package:swipeflix/database/database_manager.dart';
@@ -14,11 +14,6 @@ import 'package:swipeflix/widgets/watchlist_button.dart';
 import 'package:swipeflix/presentation/lists_screen/lists_screen.dart';
 import 'package:swipeflix/presentation/searchpage_screen/searchpage_screen.dart';
 import 'package:swipeflix/presentation/details_screen/details_screen.dart';
-//import 'package:swipeflix/database/database_manager.dart';
-
-var name = 'Spiderman';
-var link =
-    'https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg';
 
 class Homepage extends StatelessWidget {
   Homepage({Key? key})
@@ -142,18 +137,15 @@ class Homepage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       // Dislike
-                      GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            int sensitivity = 7;
-                            if (details.primaryDelta! < -sensitivity) {
-                              // Swipe Left
-                              db.addMovieToList('dislikedList', number.value);
-                              number.value++;
-                            }
-                          },
-                          child: const Image(
-                              image: AssetImage(
-                                  'assets/images/DislikeAnimation.png'))),
+                      SwipeTo(
+                        child: const Image(
+                            image: AssetImage(
+                                'assets/images/DislikeAnimation.png')),
+                        onLeftSwipe: (details) {
+                          db.addMovieToList('dislikedList', number.value);
+                          if (number.value < 9) number.value++;
+                        },
+                      ),
                       // Save
                       WatchListButton(
                         db: db,
@@ -161,18 +153,15 @@ class Homepage extends StatelessWidget {
                         number: number,
                       ),
                       // Like
-                      GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            int sensitivity = 7;
-                            if (details.primaryDelta! > sensitivity) {
-                              // Swipe Right
-                              db.addMovieToList('likedList', number.value);
-                              number.value++;
-                            }
-                          },
-                          child: const Image(
-                              image: AssetImage(
-                                  'assets/images/LikeAnimation.png'))),
+                      SwipeTo(
+                        child: const Image(
+                            image:
+                                AssetImage('assets/images/LikeAnimation.png')),
+                        onRightSwipe: (details) {
+                          db.addMovieToList('likedList', number.value);
+                          if (index < 9) number.value++;
+                        },
+                      ),
                     ],
                   ),
                   // Navigation Buttons

@@ -30,14 +30,14 @@ class AboutThisAppScreen extends StatelessWidget {
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Text(
-          'Version',
+          'Version: 1.0.0',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: Theme.of(context).colorScheme.primary,
               ),
         ),
         Text(
-          'App Version',
+          'App Version: 1.0.0',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 color: Theme.of(context).colorScheme.primary,
