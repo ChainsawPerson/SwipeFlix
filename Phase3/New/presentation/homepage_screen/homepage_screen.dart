@@ -78,7 +78,10 @@ class Homepage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DetailsScreen()),
+                                  builder: (context) => DetailsScreen(
+                                        index: index,
+                                        number: number,
+                                      )),
                             );
                           },
                           child: Image(

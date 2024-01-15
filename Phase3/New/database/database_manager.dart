@@ -16,7 +16,7 @@ class DatabaseHelper {
       join(await getDatabasesPath(), _dbName),
       onCreate: (db, version) async {
         await db.execute(// Create Table `title_basics` => Movies
-            "CREATE TABLE title_basics (title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE NOT NULL UNIQUE ON CONFLICT REPLACE, title_primaryTitle TEXT NOT NULL, title_genre TEXT, title_posterURL TEXT, title_details TEXT);");
+            "CREATE TABLE title_basics (title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE NOT NULL UNIQUE ON CONFLICT REPLACE, title_primaryTitle TEXT NOT NULL, title_genre TEXT, title_posterURL TEXT, title_details TEXT, title_imdbLink TEXT);");
         await db.execute(// Create Table `likedList` => LikedList
             "CREATE TABLE likedList (title_title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_likedList_title_id REFERENCES title_basics (title_id) NOT NULL, like_timestamp TEXT );");
         await db.execute(// Create Table `dislikedList` => DislikedList

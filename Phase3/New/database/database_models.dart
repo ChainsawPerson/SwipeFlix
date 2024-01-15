@@ -4,6 +4,7 @@ class Movie {
   final String? title_genre;
   final String? title_posterURL;
   final String? title_details;
+  final String? title_imdbLink;
 
   const Movie({
     required this.title_id,
@@ -11,6 +12,7 @@ class Movie {
     this.title_genre,
     this.title_posterURL,
     this.title_details,
+    this.title_imdbLink,
   });
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
@@ -19,6 +21,7 @@ class Movie {
         title_genre: json['title_genre'],
         title_posterURL: json['title_posterURL'],
         title_details: json['title_details'],
+        title_imdbLink: json['title_imdbLink'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -27,6 +30,7 @@ class Movie {
         'title_genre': title_genre,
         'title_posterURL': title_posterURL,
         'title_details': title_details,
+        'title_imdbLink': title_imdbLink,
       };
 }
 
