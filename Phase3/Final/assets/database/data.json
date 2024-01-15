@@ -1,0 +1,82 @@
+[
+ {
+   "title_id": 0,
+   "title_primaryTitle": "Barbie",
+   "title_genre": "Comedy, Fantasy, Adventure",
+   "title_posterURL": "assets/images/barbie.webp",
+   "title_details" : "Barbie the Doll lives in bliss in the matriarchal society of Barbie and feeling good about her role in the world in the various iterations of Barbies over the years showing girls that play with her that they can be whatever and whoever they want. On the flip side, Ken, who also lives in Barbieland, is unnoticed except in relation to Barbie, which is however one step above any other doll in Barbieland, such as Allan.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt1517268/"
+ },
+ {
+   "title_id": 1,
+   "title_primaryTitle": "Oppenheimer",
+   "title_genre": "Biography, Drama, History",
+   "title_posterURL": "assets/images/Oppenheimer.webp",
+   "title_details" : "A dramatization of the life story of J. Robert Oppenheimer, the physicist who had a large hand in the development of the atomic bomb, thus helping end World War 2. We see his life from university days all the way to post-WW2, where his fame saw him embroiled in political machinations.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt15398776/"
+ },
+ {
+   "title_id": 2,
+   "title_primaryTitle": "The Shawshank Redemption",
+   "title_genre": "Drama",
+   "title_posterURL": "assets/images/Shawshank.jpg",
+   "title_details" : "Chronicles the experiences of a formerly successful banker as a prisoner in the gloomy jailhouse of Shawshank after being found guilty of a crime he did not commit. The film portrays the man's unique way of dealing with his new, torturous life; along the way he befriends a number of fellow prisoners, most notably a wise long-term inmate named Red.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt0111161/"
+ },
+ {
+   "title_id": 3,
+   "title_primaryTitle": "Past Lives",
+   "title_genre": "Drama, Romance",
+   "title_posterURL": "assets/images/PastLives.webp",
+   "title_details" : "In Korea, Na Young, a girl and Hae Sung, a boy are school mates and good friends. They often walk back home together after school. Na Young moves to Canada and then to New York with her parents. Hae Sung continues living in Korea, does his engineering course, goes through a short spell of military service and then takes up a job.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt13238346/"
+ },
+ {
+   "title_id": 4,
+   "title_primaryTitle": "Everything Everywhere All at Once",
+   "title_genre": "Action, Adventure, Comedy",
+   "title_posterURL": "assets/images/Everything_Everywhere_All_at_Once.jpg",
+   "title_details" : "With her laundromat teetering on the brink of failure and her marriage to wimpy husband Waymond on the rocks, overworked Evelyn Wang struggles to cope with everything, including tattered relationships with her judgmental father Gong Gong and her daughter Joy.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt6710474/"
+ },
+ {
+   "title_id": 5,
+   "title_primaryTitle": "The Batman",
+   "title_genre": "Action, Crime, Drama",
+   "title_posterURL": "assets/images/Batman.jpg",
+   "title_details" : "Two years of nights have turned Bruce Wayne into a nocturnal animal. But as he continues to find his way as Gotham's dark knight Bruce is forced into a game of cat and mouse with his biggest threat so far, a manic killer known as 'The Riddler' who is filled with rage and determined to expose the corrupt system whilst picking off all of Gotham's key political figures. ",
+   "title_imdbLink" : "https://www.imdb.com/title/tt1877830/"
+ },
+ {
+   "title_id": 6,
+   "title_primaryTitle": "The Shining",
+   "title_genre": "Drama, Horror",
+   "title_posterURL": "assets/images/Shining.webp",
+   "title_details" : "After landing a job as an off-season caretaker, Jack Torrance, an aspiring author and recovering alcoholic, drags his wife Wendy and gifted son Danny to snow-covered Colorado's secluded Overlook Hotel. But writer's block prevents Jack from pursuing a new writing career.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt0081505/"
+ },
+ {
+   "title_id": 7,
+   "title_primaryTitle": "Interstellar",
+   "title_genre": "Adventure, Drama, Sci-Fi",
+   "title_posterURL": "assets/images/Interstellar.jpg",
+   "title_details" : "Earth's future has been riddled by disasters, famines, and droughts. There is only one way to ensure mankind's survival: Interstellar travel. A newly discovered wormhole in the far reaches of our solar system allows a team of astronauts to go where no man has gone before, a planet that may have the right environment to sustain human life.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt0816692/"
+ },
+ {
+   "title_id": 8,
+   "title_primaryTitle": "Hamilton",
+   "title_genre": "Biography, Drama, History",
+   "title_posterURL": "assets/images/Hamilton.jpg",
+   "title_details" : "'Hamilton' is the story of America then, told by America now. Featuring a score that blends hip-hop, jazz, R&B, and show tunes, 'Hamilton' has taken the story of American founding father Alexander Hamilton and created a revolutionary moment in theater--a musical that has had a profound impact on culture, politics, and education.",
+   "title_imdbLink" : "https://imdb.com/title/tt8503618/"
+ },
+ {
+   "title_id": 9,
+   "title_primaryTitle": "Mean Girls",
+   "title_genre": "Comedy",
+   "title_posterURL": "assets/images/MeanGirls.jpg",
+   "title_details" : "Lindsay Lohan stars as Cady Heron, a 16 year old homeschooled girl who not only makes the mistake of falling for Aaron Samuels (Jonathan Bennett), the ex-boyfriend of queenbee Regina George (Rachel McAdams), but also unintentionally joins The Plastics, led by Regina herself.",
+   "title_imdbLink" : "https://www.imdb.com/title/tt0377092/"
+ }
+]
