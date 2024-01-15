@@ -39,7 +39,10 @@ class AppRoutes {
     homepageScreen: (context) => Homepage(),
     listsScreen: (context) => ListsScreen(),
     searchpageScreen: (context) => SearchpageScreen(),
-    detailsScreen: (context) => DetailsScreen(),
+    detailsScreen: (context) => DetailsScreen(
+          index: 0,
+          number: ValueNotifier(0),
+        ),
     settingsScreen: (context) => SettingsScreen(),
     aboutThisAppScreen: (context) => AboutThisAppScreen(),
     darkLightModeScreen: (context) => DarkLightModeScreen(),
