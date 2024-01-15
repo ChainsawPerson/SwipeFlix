@@ -12,8 +12,8 @@ void main() {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
-  DatabaseHelper().deleteDatabase();
   DatabaseHelper().insertMovies();
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => UiProvider()..init(),
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               Provider.of<UiProvider>(context).isDark ? darkTheme : lightTheme,
           title: 'swipeflix',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.homepageScreen,
+          initialRoute: AppRoutes.launchingAppScreen,
           routes: AppRoutes.routes,
         );
       },

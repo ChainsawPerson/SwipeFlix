@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:swipeflix/core/app_export.dart';
 import 'package:swipeflix/database/database_manager.dart';
-import 'package:swipeflix/presentation/homepage_screen/homepage_screen.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 

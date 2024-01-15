@@ -16,7 +16,7 @@ class LaunchingAppScreen extends StatelessWidget {
           int sensitivity = 0;
           if (details.primaryDelta! < -sensitivity) {
             // Right Swipe
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => Homepage()),
             );

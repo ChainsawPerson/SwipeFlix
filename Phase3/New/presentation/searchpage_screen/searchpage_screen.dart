@@ -98,7 +98,6 @@ import 'package:swipeflix/widgets/custom_search_view.dart';
 import 'package:swipeflix/presentation/lists_screen/lists_screen.dart';
 import 'package:swipeflix/presentation/homepage_screen/homepage_screen.dart';
 
-
 class SearchpageScreen extends StatefulWidget {
   SearchpageScreen({Key? key}) : super(key: key);
 
@@ -137,7 +136,8 @@ class _SearchpageScreenState extends State<SearchpageScreen> {
                       children: [
                         SizedBox(height: 7.v),
                         Image(
-                          image: AssetImage('assets/images/Logo_update_full.png'),
+                          image:
+                              AssetImage('assets/images/Logo_update_full.png'),
                           height: 58.adaptSize,
                           width: 58.adaptSize,
                         ),
@@ -151,10 +151,7 @@ class _SearchpageScreenState extends State<SearchpageScreen> {
                             // Home
                             IconButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => Homepage()),
-                                );
+                                Navigator.pop(context);
                               },
                               icon: Icon(Icons.home_outlined),
                               color: Theme.of(context).colorScheme.secondary,
@@ -163,9 +160,10 @@ class _SearchpageScreenState extends State<SearchpageScreen> {
                             // List
                             IconButton(
                               onPressed: () {
-                                Navigator.push(
+                                Navigator.pop(
                                   context,
-                                  MaterialPageRoute(builder: (context) => ListsScreen()),
+                                  MaterialPageRoute(
+                                      builder: (context) => ListsScreen()),
                                 );
                               },
                               icon: Icon(Icons.list_outlined),
