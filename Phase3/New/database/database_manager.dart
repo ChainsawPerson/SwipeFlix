@@ -9,20 +9,20 @@ import 'package:swipeflix/database/database_models.dart';
 class DatabaseHelper {
   static const int _version = 1;
   static const String _dbName = "swipeflix.db";
-  static const String jsonInsert = "truncated_title.basics.json";
+  static const String jsonInsert = "data.json";
 
   static Future<Database> _getDatabase() async {
     return openDatabase(
       join(await getDatabasesPath(), _dbName),
       onCreate: (db, version) async {
         await db.execute(// Create Table `title_basics` => Movies
-            "CREATE TABLE title_basics (title_id TEXT PRIMARY KEY ASC ON CONFLICT REPLACE NOT NULL UNIQUE ON CONFLICT REPLACE, title_type TEXT NOT NULL, title_primaryTitle TEXT NOT NULL, title_originalTitle  TEXT    NOT NULL, title_isAdult INTEGER NOT NULL, title_startYear NUMERIC NOT NULL, title_endYear NUMERIC, title_runtimeMinutes TEXT, title_genre TEXT, title_posterURL TEXT);");
+            "CREATE TABLE title_basics (title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE NOT NULL UNIQUE ON CONFLICT REPLACE, title_primaryTitle TEXT NOT NULL, title_genre TEXT, title_posterURL TEXT, title_details TEXT);");
         await db.execute(// Create Table `likedList` => LikedList
-            "CREATE TABLE likedList (title_title_id TEXT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_likedList_title_id REFERENCES title_basics (title_id) NOT NULL, like_timestamp TEXT );");
+            "CREATE TABLE likedList (title_title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_likedList_title_id REFERENCES title_basics (title_id) NOT NULL, like_timestamp TEXT );");
         await db.execute(// Create Table `dislikedList` => DislikedList
-            "CREATE TABLE dislikedList (title_title_id TEXT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_dislikedList_title_id REFERENCES title_basics (title_id), dislike_timestamp TEXT );");
+            "CREATE TABLE dislikedList (title_title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_dislikedList_title_id REFERENCES title_basics (title_id), dislike_timestamp TEXT );");
         await db.execute(// Create Table `watchLaterList` => WatchList
-            "CREATE TABLE watchLaterList (title_title_id TEXT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_watchLater_title_id REFERENCES title_basics (title_id) NOT NULL, watchList_timestamp TEXT );");
+            "CREATE TABLE watchLaterList (title_title_id INT PRIMARY KEY ASC ON CONFLICT REPLACE CONSTRAINT fk_watchLater_title_id REFERENCES title_basics (title_id) NOT NULL, watchList_timestamp TEXT );");
       },
       version: _version,
     );
@@ -51,7 +51,7 @@ class DatabaseHelper {
   }
 
 // Updating Movies
-  Future<void> updateMovie(String id, Movie movie) async {
+  Future<void> updateMovie(int id, Movie movie) async {
     // Update Movie with id in `title_basics`
     final db = await _getDatabase();
     await db.update('title_basics', movie.toJson(),
@@ -61,42 +61,30 @@ class DatabaseHelper {
   }
 
 // Getting Movies
-  static Future<List<Map<String, dynamic>>> getAllMovies() async {
+  Future<List<Map<String, dynamic>>> getAllMovies() async {
     final db = await _getDatabase();
 
     return await db.query("title_basics");
   }
 
-// Getting Movie
-  Future<List<Movie?>> getMovie(String identifier, dynamic id) async {
-    final db = await _getDatabase();
-    try {
-      final List<Map<String, dynamic>> maps = await db
-          .query('title_basics', where: '$identifier = ?', whereArgs: [id]);
-      print('Movie found!');
-      return maps.map((e) => Movie.fromJson(e)).toList();
-    } catch (err) {
-      print('There was an error finding the movie: $err');
-      return [];
-    }
-  }
-
 // Deleting Movies
-  Future<void> deleteMovie(String table, String id) async {
+  Future<void> deleteMovie(String table, int id) async {
     // Delete Movie from Table (on function call) with id
     final db = await _getDatabase();
+    var title_id;
+    if (table == 'title_basics')
+      title_id = 'title_id';
+    else
+      title_id = 'title_title_id';
     try {
-      await db.delete(table, where: 'title_id = ?', whereArgs: [id]);
+      await db.delete(table, where: '$title_id = ?', whereArgs: [id]);
     } catch (err) {
       debugPrint("No such element: $err");
     }
   }
 
-// User Table
-
-// List Tables
 // Add Movie to List via ID
-  Future<void> addMovieToList(String list, String id) async {
+  Future<void> addMovieToList(String list, int id) async {
     // Add Movie to WatchList
     final db = await _getDatabase();
     final String timestamp;
@@ -121,12 +109,6 @@ class DatabaseHelper {
   Future<List<Map<String, dynamic>>> getList(String list) async {
     final db = await _getDatabase();
     return db.query(list);
-  }
-
-// Deleting Movie from List
-  Future<void> deleteMovieFromList(String list, user, String id) async {
-    final db = await _getDatabase();
-    db.delete(list, where: 'title_title_id = ?', whereArgs: [id]);
   }
 
   void closeDatabase() async {
